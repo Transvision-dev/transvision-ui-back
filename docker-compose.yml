@@ -1,0 +1,24 @@
+version: "3"
+
+services:
+  api:
+    build:
+      context: ./api
+    container_name: api
+    ports:
+      - "3001:3001"
+    depends_on:
+      - serviceName: mongo_db
+        condition: service_healthy
+    environment: 
+      - MONGO_URL=mongodb://mongo_db:27017
+  mongo_db:
+    image: mongo:4.2.3
+    container_name: mongo_db
+    ports:
+      - "27017:27017"
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongo mongo_db:27017/test --quiet
+      interval: 10s
+      timeout: 2s
+      retries: 10

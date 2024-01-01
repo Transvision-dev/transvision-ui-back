@@ -1,0 +1,11 @@
+# node_modules
+
+/api/app/node_modules
+
+# environment variables
+
+/api/app/.env
+
+# build files
+
+/api/app/build/*
