@@ -2,11 +2,11 @@ import User from '../models/users.model';
 import { IUser } from '../models/users.model';
 import bcrypt from 'bcrypt';
 
-export const getAllUsers = async () => {
+const getAllUsers = async () => {
     return await User.find({});
 };
 
-export const getUserById = async (id: string) => {
+const getUserById = async (id: string) => {
     return await User.findById(id);
 }
 
@@ -19,7 +19,7 @@ export const getUserById = async (id: string) => {
  * @throws Error if the user already exists or if SALT_WORK_FACTOR is not defined.
  */
 
-export const createUser = async (user: IUser) => {
+const createUser = async (user: IUser) => {
     try {
         const existingUser = await User.findOne({ email: user.email });
         if (existingUser) {
@@ -47,3 +47,12 @@ export const createUser = async (user: IUser) => {
         throw error;
     }
 }
+
+
+const UserService = {
+    getAllUsers,
+    getUserById,
+    createUser
+}
+
+export default UserService;
