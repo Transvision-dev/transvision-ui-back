@@ -10,6 +10,9 @@ const getUserById = async (id: string) => {
     return await User.findById(id);
 }
 
+const getUserByName = async (name: string) => {
+    return  await User.findOne({ name });
+}
 
 
 /**
@@ -52,6 +55,7 @@ const createUser = async (user: IUser) => {
 const UserService = {
     getAllUsers,
     getUserById,
+    getUserByName,
     createUser
 }
 
