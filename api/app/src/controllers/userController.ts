@@ -20,6 +20,7 @@ router.post("/signup", async (req: Request, res: Response) => {
 })
 
 router.post("/login", async (req: Request, res: Response) => {
+    console.log(req.body)
     console.log(req.body.name , "user attempting to login")
     try {
         const user = await UserService.getUserByName(req.body.name);

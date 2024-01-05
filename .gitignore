@@ -9,3 +9,8 @@
 # build files
 
 /api/app/build/*
+
+
+# uploaded files
+
+/api/app/uploads/*
