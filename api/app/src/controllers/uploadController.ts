@@ -1,6 +1,6 @@
 import { Router, Request, Response } from 'express';
 import path from 'path';
-import multer from 'multer';
+import multer, { FileFilterCallback } from 'multer';
 
 const router = Router();
 
@@ -17,6 +17,7 @@ export const fileStorage = multer.diskStorage({
         callback: DestinationCallback
     ): void => {
         // ...Do your stuff here.
+        callback(null, path.join(__dirname, '../../uploads'))
     },
 
     filename: (
@@ -25,24 +26,23 @@ export const fileStorage = multer.diskStorage({
         callback: FileNameCallback
     ): void => {
         // ...Do your stuff here.
+        callback(null, file.originalname)
     }
 })
 
-/* export const fileFilter = (
+export const fileFilter = (
     request: Request,
     file: Express.Multer.File,
     callback: FileFilterCallback
 ): void => {
     if (
-        file.mimetype === 'image/png' ||
-        file.mimetype === 'image/jpg' ||
-        file.mimetype === 'image/jpeg'
+        file.mimetype === 'video/mp4' 
     ) {
         callback(null, true)
     } else {
         callback(null, false)
     }
-} */
+} 
 
 
 
